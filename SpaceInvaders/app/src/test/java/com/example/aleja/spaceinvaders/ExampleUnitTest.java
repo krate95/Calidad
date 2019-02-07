@@ -15,7 +15,6 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         System.out.println("Prueba tests");
-        Log.d("Prueba", "Prueba test con log");
         assertEquals("Prueba test sencillo",4, 2 + 2);
     }
 }
