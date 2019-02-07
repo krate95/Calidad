@@ -6,4 +6,4 @@ android:
 script:
   - cd SpaceInvaders
   - chmod +x gradlew
-  - ./gradlew build --scan -s
+  - ./gradlew build -s
