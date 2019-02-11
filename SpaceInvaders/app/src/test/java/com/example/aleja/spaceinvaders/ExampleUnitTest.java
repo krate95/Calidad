@@ -15,6 +15,5 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() {
         System.out.println("Prueba tests");
-        assertEquals("Prueba test sencillo",4, 2 + 2);
     }
 }
