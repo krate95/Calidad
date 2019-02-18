@@ -21,6 +21,8 @@ public class Laser {
 
     private boolean isActive;
 
+    private boolean randomStatus;
+
     // Ha tocado ya un borde ?
     private boolean letal;
 
@@ -50,6 +52,14 @@ public class Laser {
             return  y;
         }
 
+    }
+
+    public boolean getRandomStatus(){
+        return this.randomStatus;
+    }
+
+    public float getX(){
+        return this.x;
     }
 
     public boolean shoot(float startX, float startY, int direction) {
@@ -97,5 +107,9 @@ public class Laser {
 
     public boolean isLetal() {
         return letal;
+    }
+
+    public void randomMove(){
+        //Not implemented
     }
 }
