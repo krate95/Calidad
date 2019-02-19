@@ -12,8 +12,8 @@ public class RandomPositionLaserTest {
         laser.shoot(1920/2,1080/2,laser.ABAJO);
         laser.randomMove();
         laser.update(30);
-        if (laser.getRandomStatus()){
-            Assert.assertTrue(laser.getRandomStatus());
+        if (!laser.getRandomStatus()){
+            Assert.assertFalse(laser.getRandomStatus());
         } else {
             Assert.assertFalse(1920/2 == laser.getX());
         }

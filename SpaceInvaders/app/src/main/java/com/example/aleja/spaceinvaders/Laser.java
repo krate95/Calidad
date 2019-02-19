@@ -1,6 +1,7 @@
 package com.example.aleja.spaceinvaders;
 
 import android.graphics.RectF;
+import java.util.Random;
 
 public class Laser {
     private float x;
@@ -57,9 +58,15 @@ public class Laser {
     public boolean getRandomStatus(){
         return this.randomStatus;
     }
+    public void setRabdomStatus(Boolean b) {
+        this.randomStatus = b;
+    }
 
     public float getX(){
         return this.x;
+    }
+    public void setX(float x){
+        this.x = x;
     }
 
     public boolean shoot(float startX, float startY, int direction) {
@@ -110,6 +117,13 @@ public class Laser {
     }
 
     public void randomMove(){
-        //Not implemented
+        Random randomGen = new Random();
+        int randomMoveStatus = randomGen.nextInt(100);
+        if (randomMoveStatus <= 50){
+            this.setRabdomStatus(false);
+        }else{
+            this.setRabdomStatus(true);
+            this.setX(randomGen.nextFloat());
+        }
     }
 }
