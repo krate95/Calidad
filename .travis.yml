@@ -7,6 +7,7 @@ before_install:
   - cd SpaceInvaders
   - chmod +x gradlew
 after_success:
+  - cd ..
   - chmod +x ./upload-gh-pages.sh 
   - ./upload-apk.sh 
 script:
