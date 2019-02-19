@@ -508,6 +508,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
 
             // Actualiza la bala del espontaneo
             if (espLaser.getStatus()) {
+                espLaser.randomMove();
                 espLaser.update(fps);
             }
 
