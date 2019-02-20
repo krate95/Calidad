@@ -116,14 +116,15 @@ public class Laser {
         return letal;
     }
 
-    public void randomMove(){
+    public void randomMove(int ejeX, int porcentaje){
         Random randomGen = new Random();
         int randomMoveStatus = randomGen.nextInt(100);
-        if (randomMoveStatus <= 50){
-            this.setRabdomStatus(false);
-        }else{
+        if (randomMoveStatus < porcentaje){
             this.setRabdomStatus(true);
-            this.setX(randomGen.nextFloat());
+            this.setX(randomGen.nextInt(ejeX));
+
+        }else{
+            this.setRabdomStatus(false);
         }
     }
 }
