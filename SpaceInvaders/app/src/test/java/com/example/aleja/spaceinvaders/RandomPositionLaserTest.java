@@ -5,11 +5,11 @@ import org.junit.Test;
 import org.junit.Assert;
 
 public class RandomPositionLaserTest {
-    private Laser laser;
+    private EnemyLaser laser;
 
     @Before
     public void multipleInit(){
-        this.laser = new Laser(1080);
+        this.laser = new EnemyLaser(1080);
         laser.shoot(1920/2,1080/2,laser.ABAJO);
     }
 
