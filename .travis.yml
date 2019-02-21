@@ -1,21 +1,24 @@
 language: android
 android:
   components:
-    - android-28
-    - build-tools-28.0.3
+  - android-28
+  - build-tools-28.0.3
 before_install:
-  - cd SpaceInvaders
-  - chmod +x gradlew
+- cd SpaceInvaders
+- chmod +x gradlew
 script:
-  - ./gradlew build
+- "./gradlew build"
 deploy:
   provider: releases
   skip_cleanup: true
   overwrite: true
-  api_key: $GITHUB_API_KEY
+  api_key: "$GITHUB_API_KEY"
   file_glob: true
-  file: /home/travis/build/krate95/Calidad/app/build/outputs/apk/release/*
+  file: "/home/travis/build/krate95/Calidad/app/build/outputs/apk/release/*"
   on:
     repo: krate95/Calidad
     tags: true
     all_branches: true
+env:
+  global:
+    secure: lkGicfSDix8GpU01fLlJr75jnG12Lsa2cdG659UNgwQvR3kPTSfSNNd/lpqOVmCrJG9h/uIr7T3CA5mWAfjgJQJtVuy3y0f+aBEXPWdljvVzkOVbJk2+G6xDCuoTkcY3IPtaY3zAV7Ic1xKZvbJ2hALypoEkXIsaSZYQ46bQojmZOqsPMMgsKsSwYoSTRLjF+7yJ3wHLr98COlJmy8oOJZJzLC/b4NA0xP8IYCZAZPA2oa3jS/85fE2cNiQwiamxiHsB1BNNaJpk8R824PzDlmMgrNHvxgqveGkryz0ZASQFKAdT5FO0sfnKTLDDhxDdhsdm9FBGv3olbAWXIEzNjFSrCFcRx+HcpgO72DNHN3QPkYCp3OQCIYMpQZrpJT3Vk2da7AsuPaEF3cKvC0Z2nlpqDjymNY6pdN4V8DE/gdH2f2dqtHpwyrodI5lTRA93u/9zT0h10Nw+XR1bKpx/8N/QVcerggUka8KrI3LT60LhNxj3DbpQVlVR0DF5P2ciV6Yotw/XcR9TPT+Wr3VV+soYtFKSyJL5n+wGttHEx8xfktlg4sc3WHU03nL+AbjI7vtrfOOSWPZRklvRedQHXxFCXB5qJ1i3PGzJy/e0CFot7y0i5EfbKPY4OYquGMplyWMVf4OChKVqsa4+m9UilgxchfwzsiTYpd5jyCXOrck=
