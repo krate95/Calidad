@@ -19,3 +19,4 @@ deploy:
   on:
     repo: krate95/Calidad
     tags: true
+    all_branches: true
