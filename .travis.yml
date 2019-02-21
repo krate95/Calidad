@@ -7,7 +7,7 @@ before_install:
 - cd SpaceInvaders
 - chmod +x gradlew
 script:
-- "./gradlew build"
+- "./gradlew assembleDebug"
 deploy:
   provider: releases
   skip_cleanup: true
