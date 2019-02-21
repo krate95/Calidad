@@ -15,7 +15,7 @@ deploy:
   api_key: 
     secure: "uLOSOvXLAAA92jEnPxR1jqGvxCpIA5tGg1KA6pr7qegYF0OIjDvcrjvMV/1rrEX4TUEvItyDckINwmD6gFa6Wjb1UeoYTkeF8WlH2theRtbqD9lCXbKdb+s9aPAFBqNIKKII6Z5Jm30WMAryWoqI3vpKOr5zW/eiID3rplAFx6exYpIyTho3NVgsONuN3Zxn2GEZcsasu0LmUEVzYID4h9xaRwbhPx9DzdejKWWpYkLdyrfLmW1j8DgfauBBfZB9f6uiru7z1u0cl6eJk/wYknOugjMM2RTao+Aw+ySFxAjtUSkxPrbqGYK/X0f9eiRthW72e9LVxHmSHCr69lpXgn1YJJ/XUz5NfOvCPw/i927EgMF+9rtYUuiegs3ORm8kG1v5H1Gj81phD3FbrkQDcA/onJ82cmSAAOTzqsnWrvrFttzu4wcPEbiAQfOKyRw1XF6x3ENZtrpjHYZeojG8OffIlCLHHPf6XdPtYl8yF0zPPjA+7rLOVq+wcHRV77i1XV9HwCNwFMg0cpZCM1KhDnvlHeUsynky4vPUjDIeG9vktKXwnlpXYsYeEQDsKLcWG3q3yJuQs/WNMUSPSEhAdWCL6Ds53LCV/GeXsKaTC8Oo+5bnjaDAlpROWTy+7stf8NcF3+BaeS4fKVqkMaFauqJ/8vrZRUZhnMkjSILZmfk="
   file_glob: true
-  file: /home/travis/build/krate95/Calidad/app/build/outputs/apk/release/*
+  file: /home/travis/build/krate95/Calidad/SpaceInvaders/app/build/outputs/apk/release/*
   on:
     repo: krate95/Calidad
     tags: true
