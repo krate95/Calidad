@@ -6,9 +6,16 @@ android:
 before_install:
   - cd SpaceInvaders
   - chmod +x gradlew
-after_success:
-  - cd ..
-  - chmod +x upload-apk.sh
-  - ./upload-apk.sh 
 script:
   - ./gradlew build
+deploy:
+  provider: releases
+  skip_cleanup: true
+  overwrite: true
+  api_key:
+    secure: e4d437b80a89599f9edcdda63b00f755cc09bd10
+  file_glob: true
+  file: /home/travis/build/krate95/Calidad/app/build/outputs/apk/release/*
+  on:
+    repo: krate95/Calidad
+    tags: true
