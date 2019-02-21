@@ -16,7 +16,6 @@ public class LaserTest {
 
     @Test
     public void movementTest() {
-        Marcianito marcianito = mock(Marcianito.class);
 
         laser.update(30);
         assertEquals(11, laser.getImpactPointY(), 1);
