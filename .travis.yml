@@ -3,10 +3,6 @@ android:
   components:
   - android-28
   - build-tools-28.0.3
-env:
-  global:
-    secure: V8psknKxdYrx9k/5z//vtq1znUEHIhqnSsWX0D2pSZuxTlKpZwmx6hd6K65UExlu/2YaKbLD7ctKsSONVak7UQQ9SA5zBfluBmpsVxfu35f8ylABo/pDkjmoPexx15bCmiG+k/838p1L+fF87ZN9oWPkA4v2J+P1RdBeNRd8is8I7MkwwEnvNqsSFwjHyLbqiYkb+0bMw+nxeCjDmfvno76X1RlULyHch/eir0D64gNy/pZLsbeNS9FA3cDIu3Cm/G8pHyySI01lejlPfr1s4mY9QePklQLen3Rqf2wrA6e+7ZwMNm3hXN/4piMmkkzIA7aV8YUvrPJSxRLkUgF+T7aMwo1Ail2D8zqiRTcQvi0Nbb7BU9bRFCr4m70ILqhEejyv/l4z7QNy4HzRTskrrlgENTtCnFD0O0IBNdB4J76+5VfwkSBBXHklYhmPX53Khqv99BL5MsFMzrO/1nReEfbCDKmmIwKar20MgVz0PP0EmFpLzdRMiq/yzK0XFatINbR/GXyxt72miV8XVQ/6Q+Ogdr8U7xDAbGPWXpfQOYaA3o8yT35YxkvKqFpGtDobmeqGWn6QwH/oEwpEXDGdyrF/RG05V3wbO4V6EH/nWaEtiOgPOPJykPgHxxZ/eaOj0ebTMZw7N+m9UNLNbAn7IkJcNKUlbOjpI75QME0Dr+s=
-
 before_install:
 - openssl aes-256-cbc -K $encrypted_9cdd26030056_key -iv $encrypted_9cdd26030056_iv
   -in keystoreCalidad.jks.enc -out keystoreCalidad.jks -d
@@ -26,9 +22,12 @@ deploy:
     tags: true
     all_branches: true
 before_deploy:
-  - cp $TRAVIS_BUILD_DIR/.keystore $HOME
-  - cd app/build/outputs/apk/
-  - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/keystore.jks -storepass $storepass -keypass $keypass app-release-unsigned.apk spaceInvaders_keystore
-  # Verification
-  - jarsigner -verify app-release-unsigned.apk
-  - "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk spaceInvaders.apk"
+- cp $TRAVIS_BUILD_DIR/.keystore $HOME
+- cd app/build/outputs/apk/
+- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/keystore.jks
+  -storepass $storepass -keypass $keypass app-release-unsigned.apk spaceInvaders_keystore
+- jarsigner -verify app-release-unsigned.apk
+- "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk spaceInvaders.apk"
+env:
+  global:
+    secure: QtbqglE8OQwmr2U+KOYqkgT1MMfEaiNic5FI5fTEXwvU58uhOeWVOjv3w4czxile1vjWLizgViTviynd3fUqoLYOjxpZFWCxUkRtWmUlOPca5EVMIbeFL+c56REFQ+de8F5ETumw5AHG3WWbCccwIBocj7YrkmV6lcHumzsTTL0lnP3M2MCdNcGYHL5q4MyR58kZ7I0wuihaKx/ReENrv8jqpY47QVHLwcpynXEDCZrmKP2bAUTD0oFEgXD2s+6PH9tcmDbN99bcy3o5QKP4jL5qWJ6iFfKr2HnjOgvLTp26yHSmR1fSXgkJ9utDtLod2ZkhgY1UD5KSCjAwjGo8rAMwWa4NhNmApOvRZeX9OATA01lFvOR6w5YLKcO7Ul4o6LcJuKsJXXMyqUUqJNxLZ+dYSCdkHfUF0+1IXGE3ZG0Z1pz3GQjUtJa1/K+/2UUf/Uarev1So3LkNdhTFZIbX23hMB6smYgsAYnDFjmdWE+X36vrKaws0BIdgW3/3MWrwBNyZ+TlcgcyNsl7evvCWbEHS/SVyzmxibM1ApkaueOYGIlYCOUFaywdVIorYD7iw1RjF/Dg8BKSFeSlfyILgKyNQuWuZKvYpcWLF3+NWXRWsJP+a/ovzreMWw1XsIxotmv0sKOZohUZX15rMkxgtdEfvQ7JYzalx8LwocIb/6E=
