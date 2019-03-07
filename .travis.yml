@@ -4,7 +4,7 @@ android:
   - android-28
   - build-tools-28.0.3
 before_install:
-- openssl aes-256-cbc -K $encrypted_9cdd26030056_key -iv $encrypted_9cdd26030056_iv
+- openssl aes-256-cbc -K $encrypted_ca2a019b0943_key -iv $encrypted_ca2a019b0943_iv
   -in keystoreCalidad.jks.enc -out keystoreCalidad.jks -d
 - cd SpaceInvaders
 - chmod +x gradlew
@@ -30,4 +30,4 @@ before_deploy:
 - "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk spaceInvaders.apk"
 env:
   global:
-    secure: QtbqglE8OQwmr2U+KOYqkgT1MMfEaiNic5FI5fTEXwvU58uhOeWVOjv3w4czxile1vjWLizgViTviynd3fUqoLYOjxpZFWCxUkRtWmUlOPca5EVMIbeFL+c56REFQ+de8F5ETumw5AHG3WWbCccwIBocj7YrkmV6lcHumzsTTL0lnP3M2MCdNcGYHL5q4MyR58kZ7I0wuihaKx/ReENrv8jqpY47QVHLwcpynXEDCZrmKP2bAUTD0oFEgXD2s+6PH9tcmDbN99bcy3o5QKP4jL5qWJ6iFfKr2HnjOgvLTp26yHSmR1fSXgkJ9utDtLod2ZkhgY1UD5KSCjAwjGo8rAMwWa4NhNmApOvRZeX9OATA01lFvOR6w5YLKcO7Ul4o6LcJuKsJXXMyqUUqJNxLZ+dYSCdkHfUF0+1IXGE3ZG0Z1pz3GQjUtJa1/K+/2UUf/Uarev1So3LkNdhTFZIbX23hMB6smYgsAYnDFjmdWE+X36vrKaws0BIdgW3/3MWrwBNyZ+TlcgcyNsl7evvCWbEHS/SVyzmxibM1ApkaueOYGIlYCOUFaywdVIorYD7iw1RjF/Dg8BKSFeSlfyILgKyNQuWuZKvYpcWLF3+NWXRWsJP+a/ovzreMWw1XsIxotmv0sKOZohUZX15rMkxgtdEfvQ7JYzalx8LwocIb/6E=
+    secure: iRGGlqEj6rAVftJ5SEfSVgcXh8RSNTWUTCPP4SwVO3CBFV49aSj7hwu4WSN2P835XnNrDzP7kW6a7sRmgZbRIgdYKPEHsd6z9mMpv7aezKEaRsGgv4kIYVXamRwggMQdNhFWMpptBETrDVdylTsqf8cbogCrmOQhO/hPnCkY4TS0W/XEkXP47+vrcQw9nc6FRknaMjtJSW5WmokuYMmyvqw0eN24EOSfyxpVmDdVwsVE8S5YukV7RfKMQlqqlhtORBpW5XrRc/vF10SYO7gHJhfBH5aAA6k0Sh1tkgfyoCSVcyCMFRUgkaAhnEVlfK28X/nQHKLsPyTciVUdQZME3V42vN6W9Ueo4Sjp1IHlF5/1/AN90vJpHfZVpYjn/uSnVNwZ9jorth9vxdWk46yf2h24/fORljMTXbhAKG7Eg+xIGEW+9/ioiKiUoXZ6pwb6lpncotbDTxnIZDeTs+sMtEQH7JXWPE4diSkcHDymBcvNFCYmlff+OtcU2UFZ9kKfeG7ExEVCJANuwgLakwvvDohcNby9InnBbUPmHD4W1LZzulSlST0u7z81l/uBO6BImk+o/ppAB0ZnQ0ZkosH9An/bqJK9FrssY4VuqRVwftwb+cJ7J6sNy/Rc4TlFO9XpubOPf79R9F6ydd0h9RYD9hWZzj3btCxCAKz1LIG9Z6k=
