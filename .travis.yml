@@ -12,7 +12,7 @@ before_install:
 script:
 - "./gradlew clean build -PdisablePreDex --stacktrace"
 before_deploy:
-  mv /home/travis/build/krate95/Calidad/SpaceInvaders/app/build/outputs/apk/release/app-release.apk spaceInvadersG6.apk
+  mv /home/travis/build/krate95/Calidad/SpaceInvaders/app/build/outputs/apk/release/app-release.apk /home/travis/build/krate95/Calidad/SpaceInvaders/app/build/outputs/apk/release/spaceInvadersG6.apk
 
 deploy:
   provider: releases
