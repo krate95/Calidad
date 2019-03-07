@@ -24,7 +24,7 @@ deploy:
 before_deploy:
 - cp $TRAVIS_BUILD_DIR/keystoreCalidad.jks $HOME
 - cd app/build/outputs/apk/
-- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/keystore.jks
+- jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/keystoreCalidad.jks
   -storepass $storepass -keypass $keypass app-release-unsigned.apk spaceInvaders_keystore
 - jarsigner -verify app-release-unsigned.apk
 - "${ANDROID_HOME}/build-tools/24.0.2/zipalign -v 4 app-release-unsigned.apk spaceInvaders.apk"
