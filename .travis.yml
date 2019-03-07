@@ -11,12 +11,15 @@ before_install:
 - "./gradlew dependencies || true"
 script:
 - "./gradlew clean build -PdisablePreDex --stacktrace"
+before_deploy:
+  mv /home/travis/build/krate95/Calidad/SpaceInvaders/app/build/outputs/apk/release/app-release.apk spaceInvadersG6.apk
+
 deploy:
   provider: releases
   skip_cleanup: true
   api_key: "$GITHUB_API_KEY"
   file_glob: true
-  file: /home/travis/build/krate95/Calidad/SpaceInvaders/app/build/outputs/apk/release/*
+  file: /home/travis/build/krate95/Calidad/SpaceInvaders/app/build/outputs/apk/release/spaceInvadersG6.apk
   on:
     repo: krate95/Calidad
     tags: true
