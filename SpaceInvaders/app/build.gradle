@@ -39,7 +39,7 @@ android {
 
     if (isRunningOnTravis) {
         // configure keystore
-        signingConfigs.release.storeFile = file("../keystoreCalidad.jks")
+        signingConfigs.release.storeFile = file("/home/travis/build/krate95/Calidad/keystoreCalidad.jks")
         signingConfigs.release.storePassword = System.getenv("keystore_password")
         signingConfigs.release.keyAlias = System.getenv("keystore_alias")
         signingConfigs.release.keyPassword = System.getenv("keystore_alias_password")
