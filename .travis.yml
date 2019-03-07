@@ -22,7 +22,7 @@ deploy:
     tags: true
     all_branches: true
 before_deploy:
-- cp $TRAVIS_BUILD_DIR/.keystore $HOME
+- cp $TRAVIS_BUILD_DIR/keystoreCalidad.jks $HOME
 - cd app/build/outputs/apk/
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore $HOME/keystore.jks
   -storepass $storepass -keypass $keypass app-release-unsigned.apk spaceInvaders_keystore
