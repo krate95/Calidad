@@ -326,7 +326,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         }
 
         if (marcianitoEsp.getVisibility()){
-            if (marcianitoEsp.takeAimEsp(nave.getX(),nave.getLength())){
+            if (marcianitoEsp.takeAimEsp()){
                 espLaser.shoot(marcianitoEsp.getX() + marcianitoEsp.getLength() / 2,
                         marcianitoEsp.getY(), laser.ABAJO);
             }
