@@ -71,10 +71,10 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
     private Laser laser;
 
     // Laser de invader espotaneo
-    private Laser espLaser;
+    private EnemyLaser espLaser;
 
     // laseres de los marcianitos
-    private Laser[] marcianitoLaser = new Laser[200];
+    private EnemyLaser[] marcianitoLaser = new EnemyLaser[200];
     private int proxLaser;
     private int maxMarcianitosLaser = 10;
 
@@ -150,7 +150,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         laser = new Laser(ejeY);
 
         // Prepara la bala del espontaneo
-        espLaser = new Laser(ejeY);
+        espLaser = new EnemyLaser(ejeY);
 
         // Prepara botones de disparo
         BArriba = new BotonM(context, ejeX, ejeY, 1700, 150);
@@ -160,7 +160,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
 
         // Inicializa la formación de invadersBullets
         for (int i = 0; i < marcianitoLaser.length; i++) {
-            marcianitoLaser[i] = new Laser(ejeY);
+            marcianitoLaser[i] = new EnemyLaser(ejeY);
         }
 
         // Construye un ejercito de invaders
