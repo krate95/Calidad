@@ -862,6 +862,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             hiloJuego.join();
         } catch (InterruptedException e) {
             Log.e("Error:", "joining thread");
+            Thread.currentThread().interrupt();
         }
 
     }
