@@ -52,6 +52,9 @@ public class ScoreDdHelper extends SQLiteOpenHelper {
     }
 
     public static class ScoreEntry implements BaseColumns {
+        private ScoreEntry(){
+            throw new IllegalStateException("Utility class");
+        }
         public static final String TABLE_NAME = "score";
         public static final String COLUMN_NAME_NAME = "name";
         public static final String COLUMN_NAME_SCORE = "score";
@@ -85,6 +88,7 @@ public class ScoreDdHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
