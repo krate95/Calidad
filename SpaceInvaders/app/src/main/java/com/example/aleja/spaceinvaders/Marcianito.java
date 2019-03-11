@@ -229,7 +229,7 @@ public class Marcianito {
         return randomNumber == 0;
     }
 
-    public boolean takeAimEsp(float x, float length){
+    public boolean takeAimEsp(){
 
         int randomNumber;
 
