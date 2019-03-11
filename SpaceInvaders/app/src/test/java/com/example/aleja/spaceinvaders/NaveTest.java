@@ -15,7 +15,7 @@ public class NaveTest {
         float Xtemp = nave.getX();
 
 
-        nave.setMovementState(nave.RIGHT);
+        nave.setMovementState(nave.right);
         nave.update(30, false, false, false, false);
         assertEquals(Xtemp+11.6, nave.getX(), 1);
         Xtemp += 11.6;

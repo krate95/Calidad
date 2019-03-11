@@ -326,7 +326,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         }
 
         if (marcianitoEsp.getVisibility()){
-            if (marcianitoEsp.takeAimEsp(nave.getX(),nave.getLength())){
+            if (marcianitoEsp.takeAimEsp()){
                 espLaser.shoot(marcianitoEsp.getX() + marcianitoEsp.getLength() / 2,
                         marcianitoEsp.getY(), laser.ABAJO);
             }
@@ -401,7 +401,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             int newY = generator.nextInt(ejeY);
             esparrin.setX(newX);
             esparrin.setY(newY);
-            esparrin.update(fps);
+            esparrin.update();
 
             for (int i = 0; i < numMarcianitos; i++) {
                 if (marcianito[i].getVisibility()) {
@@ -507,10 +507,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             }
 
             // Actualiza la bala del espontaneo
-            if (espLaser.getStatus()) {
-                espLaser.randomMove(ejeX, 50);
-                espLaser.update(fps);
-            }
+            espLaser.update(fps);
 
             // Actualiza todas las balas de los invaders si están activas
             for (int i = 0; i < marcianitoLaser.length; i++) {
@@ -865,6 +862,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             hiloJuego.join();
         } catch (InterruptedException e) {
             Log.e("Error:", "joining thread");
+            Thread.currentThread().interrupt();
         }
 
     }
@@ -902,22 +900,22 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
                 // Movimiento arriba
                 if ((motionEvent.getX() > BArriba.getX())&&(motionEvent.getX() < BArriba.getX()+ BArriba.getLength())&&
                         (motionEvent.getY() > BArriba.getY())&&(motionEvent.getY() < BArriba.getY()+ BArriba.getHeight())){
-                    nave.setMovementState(nave.UP);
+                    nave.setMovementState(nave.up);
                 }
                 // Movimiento abajo
                 if ((motionEvent.getX() > BAbajo.getX())&&(motionEvent.getX() < BAbajo.getX()+ BAbajo.getLength())&&
                         (motionEvent.getY() > BAbajo.getY())&&(motionEvent.getY() < BAbajo.getY()+ BAbajo.getHeight())){
-                    nave.setMovementState(nave.DOWN);
+                    nave.setMovementState(nave.down);
                 }
                 // Movimiento derecha
                 if ((motionEvent.getX() > BDerecha.getX())&&(motionEvent.getX() < BDerecha.getX()+ BDerecha.getLength())&&
                         (motionEvent.getY() > BDerecha.getY())&&(motionEvent.getY() < BDerecha.getY()+ BDerecha.getHeight())){
-                    nave.setMovementState(nave.RIGHT);
+                    nave.setMovementState(nave.right);
                 }
                 // Movimiento izquierda
                 if ((motionEvent.getX() > BIzquierda.getX())&&(motionEvent.getX() < BIzquierda.getX()+ BIzquierda.getLength())&&
                         (motionEvent.getY() > BIzquierda.getY())&&(motionEvent.getY() < BIzquierda.getY()+ BIzquierda.getHeight())){
-                    nave.setMovementState(nave.LEFT);
+                    nave.setMovementState(nave.left);
                 }
 
                 break;
@@ -925,7 +923,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             // El jugador ha retirado su dedo de la pantalla
             case MotionEvent.ACTION_UP:
                 if ((motionEvent.getX() < ejeX / 2)) {
-                    nave.setMovementState(nave.PARADA);
+                    nave.setMovementState(nave.stopped);
                 }
 
                 break;
