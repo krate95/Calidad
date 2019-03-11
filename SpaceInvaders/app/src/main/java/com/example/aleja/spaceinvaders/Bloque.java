@@ -18,16 +18,16 @@ public class Bloque {
 
         // El número de guaridas
         int shelterPadding = screenX / 9;
-        int startHeight = (int)(screenY - (screenY /8 * 2.2));
+        int startHeight = (int)(screenY - ((double)screenY /8 * 2.2));
 
         rect = new RectF(column * width + brickPadding +
                 (shelterPadding * shelterNumber) +
-                shelterPadding + shelterPadding * shelterNumber,
-                row * height + brickPadding + startHeight,
+                (float)shelterPadding + shelterPadding * shelterNumber,
+                row * height + brickPadding + (float)startHeight,
                 column * width + width - brickPadding +
                         (shelterPadding * shelterNumber) +
-                        shelterPadding + shelterPadding * shelterNumber,
-                row * height + height - brickPadding + startHeight);
+                        shelterPadding + (float)shelterPadding * shelterNumber,
+                row * height + height - brickPadding + (float)startHeight);
     }
 
     public RectF getRect(){
