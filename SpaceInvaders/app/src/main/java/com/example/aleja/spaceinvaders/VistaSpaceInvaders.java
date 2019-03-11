@@ -326,7 +326,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         }
 
         if (marcianitoEsp.getVisibility()){
-            if (marcianitoEsp.takeAimEsp(nave.getX(),nave.getLength())){
+            if (marcianitoEsp.takeAimEsp()){
                 espLaser.shoot(marcianitoEsp.getX() + marcianitoEsp.getLength() / 2,
                         marcianitoEsp.getY(), laser.ABAJO);
             }
@@ -507,10 +507,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             }
 
             // Actualiza la bala del espontaneo
-            if (espLaser.getStatus()) {
-                espLaser.randomMove(ejeX, 50);
-                espLaser.update(fps);
-            }
+            espLaser.update(fps);
 
             // Actualiza todas las balas de los invaders si están activas
             for (int i = 0; i < marcianitoLaser.length; i++) {
