@@ -507,7 +507,9 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             }
 
             // Actualiza la bala del espontaneo
+            espLaser.randomMove(ejeX, 50);
             espLaser.update(fps);
+
 
             // Actualiza todas las balas de los invaders si están activas
             for (int i = 0; i < marcianitoLaser.length; i++) {
