@@ -23,8 +23,8 @@ public class BotonM {
     public BotonM(Context context, int screenX, int screenY, float pX, float pY){
         rect = new RectF();
 
-        length = screenX/30;
-        height = screenY/25;
+        length = (float)screenX/30;
+        height = (float)screenY/25;
 
         x = screenX - pX;
         y = screenY - pY;

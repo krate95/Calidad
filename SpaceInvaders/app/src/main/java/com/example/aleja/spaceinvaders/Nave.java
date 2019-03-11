@@ -8,9 +8,6 @@ import android.graphics.RectF;
 public class Nave {
     RectF rect;
 
-    // La nave espacial del jugador será representada por un Bitmap
-    private Bitmap bitmap;
-
     // Que tan ancho y alto puede llegar nuestra nave espacial
     private float length;
     private float height;
@@ -25,24 +22,24 @@ public class Nave {
     private float velocidadNav;
 
     // La nave espacial del jugador va a ser representada por un Bitmap
-    private static Bitmap bitmap1 = null;
-    private static Bitmap bitmap2 = null;
+    private Bitmap bitmap1 = null;
+    private Bitmap bitmap2 = null;
 
     // Selector de bitmap
-    private final int PRIMERO = 1;
-    private final int SEGUNDO = 2;
+    private final int first = 1;
+    private final int second = 2;
 
-    private int select = PRIMERO;
+    private int select = first;
 
     // En qué direcciones se puede mover la nave espacial
-    public final int PARADA = 0;
-    public final int LEFT = 1;
-    public final int RIGHT = 2;
-    public final int UP = 3;
-    public final int DOWN = 4;
+    public final int stopped = 0;
+    public final int left = 1;
+    public final int right = 2;
+    public final int up = 3;
+    public final int down = 4;
 
     // Se esta moviendo la nave espacial y en que dirección
-    private int shipMoving = PARADA;
+    private int shipMoving = stopped;
 
     // Este es el método del constructor
     // Cuando creamos un objeto de esta clase daremos
@@ -52,11 +49,11 @@ public class Nave {
         // Inicializa un RectF vacío
         rect = new RectF();
 
-        length = screenX/17;
-        height = screenY/10;
+        length = (float)((double)screenX/17);
+        height = (float)((double)screenY/10);
 
         // Inicia la nave en el centro de la pantalla aproximadamente
-        x = screenX / 2;
+        x = (float)((double)screenX / 2);
         y = screenY - height - 10;
 
         // arreglo de problema de memoria
@@ -87,15 +84,15 @@ public class Nave {
     }
 
     public void changeBitmap(){
-        if (select == PRIMERO){
-            select = SEGUNDO;
+        if (select == first){
+            select = second;
         } else {
-            select = PRIMERO;
+            select = first;
         }
     }
 
     public Bitmap getBitmap(){
-        if (select == PRIMERO) {
+        if (select == first) {
             return bitmap1;
         } else {
             return bitmap2;
@@ -138,19 +135,19 @@ public class Nave {
     public void update(long fps, boolean tocaD, boolean tocaI, boolean tocaAR,boolean tocaAB){
 
 
-            if ((shipMoving == LEFT)&&(!tocaI)) {
+            if ((shipMoving == left)&&(!tocaI)) {
                 x = x - velocidadNav / fps;
             }
 
-            if ((shipMoving == RIGHT)&&(!tocaD)) {
+            if ((shipMoving == right)&&(!tocaD)) {
                 x = x + velocidadNav / fps;
             }
 
-            if ((shipMoving == UP)&&(!tocaAR)) {
+            if ((shipMoving == up)&&(!tocaAR)) {
                 y = y - velocidadNav / fps;
             }
 
-            if ((shipMoving == DOWN)&&(!tocaAB)) {
+            if ((shipMoving == down)&&(!tocaAB)) {
                 y = y + velocidadNav / fps;
             }
 
@@ -162,7 +159,7 @@ public class Nave {
 
     }
 
-    public void update(long fps){
+    public void update(){
         // Actualiza rect el cual es usado para detectar impactos
         rect.top = y;
         rect.bottom = y + height;
