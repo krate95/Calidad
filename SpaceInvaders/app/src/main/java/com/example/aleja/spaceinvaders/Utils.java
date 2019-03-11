@@ -7,6 +7,9 @@ import android.util.Base64;
 import java.io.ByteArrayOutputStream;
 
 public class Utils {
+    private Utils(){
+        throw new IllegalStateException("Utility class");
+    }
     public static String encodeToBase64(Bitmap image) {
         Bitmap immagex = image;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
