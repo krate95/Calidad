@@ -7,8 +7,6 @@ public class Laser {
     protected float y;
     protected RectF rect;
 
-    private boolean letal;
-
     // En qué dirección se está disparando
     public final int ARRIBA = 0;
     public final int ABAJO = 1;
@@ -49,11 +47,17 @@ public class Laser {
 
     }
 
+    public float getX(){
+        return this.x;
+    }
+    public void setX(float x){
+        this.x = x;
+    }
+
     public boolean shoot(float startX, float startY, int direction) {
         if (!isActive) {
             x = startX;
             y = startY;
-            letal = false;   // Solo sirve para los laser de invaders
             heading = direction;
             isActive = true;
             return true;
@@ -87,12 +91,4 @@ public class Laser {
         rect.bottom = y + height;
 
     }
-
-    public void hacerLetal(){
-        this.letal = true;
-    }
-    public boolean isLetal() {
-        return this.letal;
-    }
-
 }
