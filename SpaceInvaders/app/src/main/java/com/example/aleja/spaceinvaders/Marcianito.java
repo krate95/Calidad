@@ -13,20 +13,20 @@ public class Marcianito {
     Random generator = new Random();
 
     //los invader van a ser representados por un Bitmap
-    private static Bitmap bitmap1;
-    private static Bitmap bitmap2;
+    private Bitmap bitmap1;
+    private Bitmap bitmap2;
 
-    private static Bitmap bitmap1Destructor;
-    private static Bitmap bitmap2Destructor;
+    private Bitmap bitmap1Destructor;
+    private Bitmap bitmap2Destructor;
 
     private Bitmap thisBitmap1;
     private Bitmap thisBitmap2;
 
     // Selector de bitmap
-    private final int PRIMERO = 1;
-    private final int SEGUNDO = 2;
+    private final static int first = 1;
+    private final static int second = 2;
 
-    private int select = PRIMERO;
+    private int select = first;
 
     // Qué tan largo y ancho será nuestro Invader
     private float length;
@@ -41,11 +41,11 @@ public class Marcianito {
     // Esto mantendrá la rapidez de los pixeles por segundo a la que el invader se moverá.
     private float shipSpeed;
 
-    public final int LEFT = 1;
-    public final int RIGHT = 2;
+    public final static int left = 1;
+    public final static int right = 2;
 
     // Se está moviendo la nave espacial y en qué dirección
-    private int shipMoving = RIGHT;
+    private int shipMoving = right;
 
     boolean isVisible;
 
@@ -56,15 +56,15 @@ public class Marcianito {
         // Inicializa un RectF vacío
         rect = new RectF();
 
-        length = screenX / 21;
-        height = screenY / 20;
+        length = (float)((double)screenX / 21);
+        height = (float)((double)screenY / 20);
 
         isVisible = true;
 
         padding = screenX / 25;
 
         x = column * (length + padding);
-        y = row * (height + padding/2);
+        y = (float)(row * (height + (double)padding/2));
 
         // Inicializa el bitmap
         if (bitmap1 == null) {
@@ -87,7 +87,7 @@ public class Marcianito {
         this.thisBitmap2 = bitmap2;
 
         // Qué tan rápido va el invader en pixeles por segundo
-        shipSpeed = screenX/20;
+        shipSpeed = (float)((double)screenX/20);
     }
 
     public Marcianito(Context context, int screenX, int screenY) {
@@ -95,15 +95,15 @@ public class Marcianito {
         // Inicializa un RectF vacío
         rect = new RectF();
 
-        length = screenX / 15;
-        height = screenY / 20;
+        length = (float)((double)screenX / 15);
+        height = (float)((double)screenY / 20);
 
         isVisible = false;
 
         padding = screenX / 25;
 
         x = 0;
-        y = height + padding/5;
+        y = (float)(height + (double)padding/5);
 
         // Inicializa el bitmap
         if (bitmap1Destructor == null) {
@@ -127,7 +127,7 @@ public class Marcianito {
         this.thisBitmap2 = bitmap2Destructor;
 
         // Qué tan rápido va el invader en pixeles por segundo
-        shipSpeed = screenX/11;
+        shipSpeed = (float)((double)screenX/11);
     }
 
     public void setInvisible(){
@@ -143,15 +143,15 @@ public class Marcianito {
     }
 
     public void changeBitmap(){
-        if (select == PRIMERO){
-            select = SEGUNDO;
+        if (select == first){
+            select = second;
         } else {
-            select = PRIMERO;
+            select = first;
         }
     }
 
     public Bitmap getBitmap(){
-        if (select == PRIMERO) {
+        if (select == first) {
             return this.thisBitmap1;
         } else {
             return this.thisBitmap2;
@@ -176,16 +176,16 @@ public class Marcianito {
 
     public void reinicio(){
         x = 0;
-        y = height + padding/5;
+        y = (float)(height + (double)padding/5);
         this.isVisible = true;
     }
 
     public void update(long fps){
-        if(shipMoving == LEFT){
+        if(shipMoving == left){
             x = x - shipSpeed / fps;
         }
 
-        if(shipMoving == RIGHT){
+        if(shipMoving == right){
             x = x + shipSpeed / fps;
         }
 
@@ -198,10 +198,10 @@ public class Marcianito {
     }
 
     public void dropDownAndReverse(){
-        if(shipMoving == LEFT){
-            shipMoving = RIGHT;
+        if(shipMoving == left){
+            shipMoving = right;
         }else{
-            shipMoving = LEFT;
+            shipMoving = left;
         }
 
         y = y + height;
@@ -226,22 +226,14 @@ public class Marcianito {
 
         // Si está disparando aleatoriamente (sin estar cerca del jugador) una probabilidad de 1 en 2000
         randomNumber = generator.nextInt(2000);
-        if(randomNumber == 0){
-            return true;
-        }
-
-        return false;
+        return randomNumber == 0;
     }
 
-    public boolean takeAimEsp(float playerShipX, float playerShipLength){
+    public boolean takeAimEsp(float x, float length){
 
         int randomNumber;
 
         randomNumber = generator.nextInt(50);
-        if(randomNumber == 0) {
-            return true;
-        }
-
-        return false;
+        return randomNumber == 0;
     }
 }
