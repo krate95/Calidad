@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 public class RankingActivity extends Activity {
-    private ScoreDdHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +23,10 @@ public class RankingActivity extends Activity {
                 RankingActivity.this.finish();
             }
         });
-        this.helper = new ScoreDdHelper(this);
+        ScoreDdHelper helper = new ScoreDdHelper(this);
         final ListView listView = this.findViewById(R.id.ranking);
 
-        final RankingListAdapter adapter = new RankingListAdapter(this, this.helper.findTop10Ranking());
+        final RankingListAdapter adapter = new RankingListAdapter(this, helper.findTop10Ranking());
         listView.setAdapter(adapter);
     }
 }
