@@ -375,6 +375,58 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         return marcianitoLaser;
     }
 
+    private Nave randomTeleportSpaceShip(Nave nave){
+        int randomN = generator.nextInt(200);
+        if (randomN == 1){
+            predict1 = false;
+            predict2 = false;
+            predict3 = false;
+            int newX = generator.nextInt(ejeX);
+            int newY = generator.nextInt(ejeY);
+            esparrin.setX(newX);
+            esparrin.setY(newY);
+            esparrin.update();
+
+            for (int i = 0; i < numMarcianitos; i++) {
+                if (marcianito[i].getVisibility()) {
+                    if ((RectF.intersects(marcianito[i].getRect(), esparrin.getRect()))) {
+                        predict1 = true;
+                    }
+                }
+            }
+
+            for (int j = 0; j < numBloque; j++) {
+                if (bloques[j].getVisibility()) {
+                    if ((RectF.intersects(esparrin.getRect(), bloques[j].getRect()))) {
+                        predict2 = true;
+                    }
+                }
+            }
+
+            if (marcianitoEsp.getVisibility()) {
+                if (RectF.intersects(marcianitoEsp.getRect(), esparrin.getRect())) {
+                    predict3 = true;
+                }
+            }
+
+            if (!((predict1)||(predict2)||(predict3))){
+                nave.setX(newX);
+                nave.setY(newY);
+            }
+        }
+
+        return nave;
+    }
+
+    private Bloque martianBarrerColision(Bloque bloque, Marcianito marcianito){
+        if (bloque.getVisibility()) {
+            if (RectF.intersects(marcianito.getRect(), bloque.getRect())) {
+                bloque.setInvisible();
+            }
+        }
+
+        return bloque;
+    }
 
     private void update() {
 
@@ -432,44 +484,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         }
 
         // Desaparicion y aparicion aleatoria de nave
-        int randomN = generator.nextInt(200);
-        if (randomN == 1){
-            predict1 = false;
-            predict2 = false;
-            predict3 = false;
-            int newX = generator.nextInt(ejeX);
-            int newY = generator.nextInt(ejeY);
-            esparrin.setX(newX);
-            esparrin.setY(newY);
-            esparrin.update();
-
-            for (int i = 0; i < numMarcianitos; i++) {
-                if (marcianito[i].getVisibility()) {
-                    if ((RectF.intersects(marcianito[i].getRect(), esparrin.getRect()))) {
-                        predict1 = true;
-                    }
-                }
-            }
-
-            for (int j = 0; j < numBloque; j++) {
-                if (bloques[j].getVisibility()) {
-                    if ((RectF.intersects(esparrin.getRect(), bloques[j].getRect()))) {
-                        predict2 = true;
-                    }
-                }
-            }
-
-            if (marcianitoEsp.getVisibility()) {
-                if (RectF.intersects(marcianitoEsp.getRect(), esparrin.getRect())) {
-                    predict3 = true;
-                }
-            }
-
-            if (!((predict1)||(predict2)||(predict3))){
-                nave.setX(newX);
-                nave.setY(newY);
-            }
-        }
+        this.randomTeleportSpaceShip(nave);
 
         // Ha impactado la nave con la barrera o con un invader
         pierde = checkIfLost();
@@ -478,11 +493,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         for (int i = 0; i < numMarcianitos; i++) {
             if (marcianito[i].getVisibility()){
                 for (int j = 0; j < numBloque; j++) {
-                    if (bloques[j].getVisibility()) {
-                        if (RectF.intersects(marcianito[i].getRect(), bloques[j].getRect())) {
-                            bloques[j].setInvisible();
-                        }
-                    }
+                    this.martianBarrerColision(bloques[j], marcianito[i]);
                 }
             }
         }
