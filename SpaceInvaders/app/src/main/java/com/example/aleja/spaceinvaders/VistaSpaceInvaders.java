@@ -374,7 +374,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         return marcianitoLaser;
     }
 
-    private Nave randomTeleportSpaceShip(Nave nave){
+    private Nave randomTeleportSpaceShip(Nave nave, Nave esparrin, Bloque[] bloques, Marcianito[] marcianito){
         int randomN = generator.nextInt(200);
         if (randomN == 1){
             predict1 = false;
