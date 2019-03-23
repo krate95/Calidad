@@ -100,8 +100,8 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
     // ¿Ha perdido el jugador?
     boolean pierde = false;
 
-    private final String ADULT = "adult";
-    private final String REBOTE = "rebote";
+    private static final String ADULT = "adult";
+    private static final String REBOTE = "rebote";
 
 
     // Cuando inicializamos (call new()) en gameView
@@ -344,10 +344,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
                 return true;
             }
         }
-        if (marcianitoEsp.getVisibility() && RectF.intersects(marcianitoEsp.getRect(), nave.getRect())) {
-            return true;
-        }
-        return false;
+        return marcianitoEsp.getVisibility() && RectF.intersects(marcianitoEsp.getRect(), nave.getRect());
     }
 
     private EnemyLaser updateInvaderBullet(EnemyLaser marcianitoLaser) {
@@ -813,22 +810,22 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
                 // Movimiento arriba
                 if ((motionEvent.getX() > upButton.getX())&&(motionEvent.getX() < upButton.getX()+ upButton.getLength())&&
                         (motionEvent.getY() > upButton.getY())&&(motionEvent.getY() < upButton.getY()+ upButton.getHeight())){
-                    nave.setMovementState(nave.up);
+                    nave.setMovementState(nave.UP);
                 }
                 // Movimiento abajo
                 if ((motionEvent.getX() > downButton.getX())&&(motionEvent.getX() < downButton.getX()+ downButton.getLength())&&
                         (motionEvent.getY() > downButton.getY())&&(motionEvent.getY() < downButton.getY()+ downButton.getHeight())){
-                    nave.setMovementState(nave.down);
+                    nave.setMovementState(nave.DOWN);
                 }
                 // Movimiento derecha
                 if ((motionEvent.getX() > rightButton.getX())&&(motionEvent.getX() < rightButton.getX()+ rightButton.getLength())&&
                         (motionEvent.getY() > rightButton.getY())&&(motionEvent.getY() < rightButton.getY()+ rightButton.getHeight())){
-                    nave.setMovementState(nave.right);
+                    nave.setMovementState(nave.RIGHT);
                 }
                 // Movimiento izquierda
                 if ((motionEvent.getX() > leftButton.getX())&&(motionEvent.getX() < leftButton.getX()+ leftButton.getLength())&&
                         (motionEvent.getY() > leftButton.getY())&&(motionEvent.getY() < leftButton.getY()+ leftButton.getHeight())){
-                    nave.setMovementState(nave.left);
+                    nave.setMovementState(nave.LEFT);
                 }
 
                 break;
@@ -836,7 +833,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             // El jugador ha retirado su dedo de la pantalla
             case MotionEvent.ACTION_UP:
                 if ((motionEvent.getX() < ejeX / 2)) {
-                    nave.setMovementState(nave.stopped);
+                    nave.setMovementState(nave.STOPPED);
                 }
 
                 break;

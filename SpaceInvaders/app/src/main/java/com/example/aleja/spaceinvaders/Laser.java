@@ -8,8 +8,8 @@ public class Laser {
     protected RectF rect;
 
     // En qué dirección se está disparando
-    public final int ARRIBA = 0;
-    public final int ABAJO = 1;
+    public static final int ARRIBA = 0;
+    public static final int ABAJO = 1;
 
     // No vas a ningún lado
     int heading = -1;
