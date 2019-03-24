@@ -21,7 +21,7 @@ public class MenuActivity extends Activity {
     MediaPlayer mediaPlayerVictoria;
     MediaPlayer mediaPlayerDerrota;
 
-
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         helper = new ScoreDdHelper(this);

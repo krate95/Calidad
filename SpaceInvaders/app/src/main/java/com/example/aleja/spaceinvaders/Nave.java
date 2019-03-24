@@ -26,20 +26,20 @@ public class Nave {
     private Bitmap bitmap2 = null;
 
     // Selector de bitmap
-    private final int first = 1;
-    private final int second = 2;
+    private static final int FIRST = 1;
+    private static final int SECOND = 2;
 
-    private int select = first;
+    private int select = FIRST;
 
     // En qué direcciones se puede mover la nave espacial
-    public final int stopped = 0;
-    public final int left = 1;
-    public final int right = 2;
-    public final int up = 3;
-    public final int down = 4;
+    public static final int STOPPED = 0;
+    public static final int LEFT = 1;
+    public static final int RIGHT = 2;
+    public static final int UP = 3;
+    public static final int DOWN = 4;
 
     // Se esta moviendo la nave espacial y en que dirección
-    private int shipMoving = stopped;
+    private int shipMoving = STOPPED;
 
     // Este es el método del constructor
     // Cuando creamos un objeto de esta clase daremos
@@ -84,15 +84,15 @@ public class Nave {
     }
 
     public void changeBitmap(){
-        if (select == first){
-            select = second;
+        if (select == FIRST){
+            select = SECOND;
         } else {
-            select = first;
+            select = FIRST;
         }
     }
 
     public Bitmap getBitmap(){
-        if (select == first) {
+        if (select == FIRST) {
             return bitmap1;
         } else {
             return bitmap2;
@@ -135,19 +135,19 @@ public class Nave {
     public void update(long fps, boolean tocaD, boolean tocaI, boolean tocaAR,boolean tocaAB){
 
 
-            if ((shipMoving == left)&&(!tocaI)) {
+            if ((shipMoving == LEFT)&&(!tocaI)) {
                 x = x - velocidadNav / fps;
             }
 
-            if ((shipMoving == right)&&(!tocaD)) {
+            if ((shipMoving == RIGHT)&&(!tocaD)) {
                 x = x + velocidadNav / fps;
             }
 
-            if ((shipMoving == up)&&(!tocaAR)) {
+            if ((shipMoving == UP)&&(!tocaAR)) {
                 y = y - velocidadNav / fps;
             }
 
-            if ((shipMoving == down)&&(!tocaAB)) {
+            if ((shipMoving == DOWN)&&(!tocaAB)) {
                 y = y + velocidadNav / fps;
             }
 
