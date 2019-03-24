@@ -7,6 +7,8 @@ public class EnemyLaser extends Laser {
     private boolean randomStatus;
     private boolean letal;
 
+    private Random randomGen = new Random();
+
     public EnemyLaser(int screenY){
         super(screenY);
     }
@@ -41,7 +43,6 @@ public class EnemyLaser extends Laser {
     }
 
     public void randomMove(int ejeX, int percentaje){
-        Random randomGen = new Random();
         int randomMoveStatus = randomGen.nextInt(100);
         if (randomMoveStatus < percentaje){
             this.setRandomStatus(true);

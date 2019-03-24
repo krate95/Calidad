@@ -23,10 +23,10 @@ public class Marcianito {
     private Bitmap thisBitmap2;
 
     // Selector de bitmap
-    private final static int first = 1;
-    private final static int second = 2;
+    private static final int FIRST = 1;
+    private static final int SECOND = 2;
 
-    private int select = first;
+    private int select = FIRST;
 
     // Qué tan largo y ancho será nuestro Invader
     private float length;
@@ -41,11 +41,11 @@ public class Marcianito {
     // Esto mantendrá la rapidez de los pixeles por segundo a la que el invader se moverá.
     private float shipSpeed;
 
-    public final static int left = 1;
-    public final static int right = 2;
+    public static final int LEFT = 1;
+    public static final int RIGHT = 2;
 
     // Se está moviendo la nave espacial y en qué dirección
-    private int shipMoving = right;
+    private int shipMoving = RIGHT;
 
     boolean isVisible;
 
@@ -143,15 +143,15 @@ public class Marcianito {
     }
 
     public void changeBitmap(){
-        if (select == first){
-            select = second;
+        if (select == FIRST){
+            select = SECOND;
         } else {
-            select = first;
+            select = FIRST;
         }
     }
 
     public Bitmap getBitmap(){
-        if (select == first) {
+        if (select == FIRST) {
             return this.thisBitmap1;
         } else {
             return this.thisBitmap2;
@@ -181,11 +181,11 @@ public class Marcianito {
     }
 
     public void update(long fps){
-        if(shipMoving == left){
+        if(shipMoving == LEFT){
             x = x - shipSpeed / fps;
         }
 
-        if(shipMoving == right){
+        if(shipMoving == RIGHT){
             x = x + shipSpeed / fps;
         }
 
@@ -198,10 +198,10 @@ public class Marcianito {
     }
 
     public void dropDownAndReverse(){
-        if(shipMoving == left){
-            shipMoving = right;
+        if(shipMoving == LEFT){
+            shipMoving = RIGHT;
         }else{
-            shipMoving = left;
+            shipMoving = LEFT;
         }
 
         y = y + height;
