@@ -804,10 +804,8 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
 
             // El jugador ha retirado su dedo de la pantalla
         } else {
-            if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                if ((motionEvent.getX() < ejeX / 2)) {
-                    nave.setMovementState(Nave.STOPPED);
-                }
+            if (motionEvent.getAction() == MotionEvent.ACTION_UP && (motionEvent.getX() < ejeX / 2)) {
+                nave.setMovementState(Nave.STOPPED);
             }
 
         }
