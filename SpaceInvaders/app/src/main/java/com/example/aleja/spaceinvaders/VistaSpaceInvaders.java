@@ -562,7 +562,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         }
 
         // Desaparicion y aparicion aleatoria de nave
-        nave = this.randomTeleportSpaceShip(nave);
+        //nave = this.randomTeleportSpaceShip(nave);
 
         // Ha impactado la nave con la barrera o con un invader
         pierde = checkIfLost();
@@ -804,10 +804,11 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
 
             // El jugador ha retirado su dedo de la pantalla
         } else {
-            if ((motionEvent.getX() < ejeX / 2)) {
-                nave.setMovementState(Nave.STOPPED);
+            if(motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                if ((motionEvent.getX() < ejeX / 2)) {
+                    nave.setMovementState(Nave.STOPPED);
+                }
             }
-
 
         }
         return true;
