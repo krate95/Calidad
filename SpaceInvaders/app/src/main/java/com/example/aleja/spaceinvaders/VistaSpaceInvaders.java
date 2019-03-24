@@ -66,7 +66,6 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
     // laseres de los marcianitos
     private EnemyLaser[] marcianitoLaser = new EnemyLaser[200];
     private int proxLaser;
-    private int maxMarcianitosLaser = 10;
 
     // Hasta 60 Marcianitos
     Marcianito[] marcianito = new Marcianito[60];
@@ -267,9 +266,9 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             }
 
             // Dibuja todas las balas de los invaders si están activas
-            for (int i = 0; i < marcianitoLaser.length; i++) {
-                if (marcianitoLaser[i].getStatus()) {
-                    canvas.drawRect(marcianitoLaser[i].getRect(), paint);
+            for (EnemyLaser aMarcianitoLaser : marcianitoLaser) {
+                if (aMarcianitoLaser.getStatus()) {
+                    canvas.drawRect(aMarcianitoLaser.getRect(), paint);
                 }
             }
 
@@ -295,7 +294,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             if (marcianito.takeAim(nave.getX(),
                     nave.getLength()) && marcianitoLaser[proxLaser].shoot(marcianito.getX()
                             + marcianito.getLength() / 2,
-                    marcianito.getY(), laser.ABAJO)) {
+                    marcianito.getY(), Laser.ABAJO)) {
 
                 // Disparo realizado
                 // Preparete para el siguiente disparo
@@ -303,6 +302,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
 
                 // Inicia el ciclo repetitivo otra vez al
                 // primero si ya hemos llegado al último.
+                int maxMarcianitosLaser = 10;
                 if (proxLaser == maxMarcianitosLaser) {
                     // Esto detiene el disparar otra bala hasta
                     // que una haya completado su trayecto.
@@ -358,9 +358,9 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         // Nave de ayuda
         // Inicializa el esparril
         Nave esparrin = new Nave(context, ejeX, ejeY);
-        Boolean predict1;
-        Boolean predict2;
-        Boolean predict3;
+        boolean predict1;
+        boolean predict2;
+        boolean predict3;
 
         int randomN = generator.nextInt(200);
         if (randomN == 1){
@@ -509,10 +509,10 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
 
         // Mueve la nave espacial del jugador
 
-        Boolean tocaD = false;
-        Boolean tocaI = false;
-        Boolean tocaAB = false;
-        Boolean tocaAR = false;
+        boolean tocaD = false;
+        boolean tocaI = false;
+        boolean tocaAB = false;
+        boolean tocaAR = false;
 
 
         if (nave.getX() > ejeX - nave.getLength()) {
@@ -541,7 +541,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
 
         if (marcianitoEsp.getVisibility() && marcianitoEsp.takeAimEsp()){
             espLaser.shoot(marcianitoEsp.getX() + marcianitoEsp.getLength() / 2,
-                    marcianitoEsp.getY(), laser.ABAJO);
+                    marcianitoEsp.getY(), Laser.ABAJO);
         }
 
         // Actualiza a todos los invaders si están visibles
@@ -561,7 +561,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
         }
 
         // Desaparicion y aparicion aleatoria de nave
-        //nave = this.randomTeleportSpaceShip(nave);
+        nave = this.randomTeleportSpaceShip(nave);
 
         // Ha impactado la nave con la barrera o con un invader
         pierde = checkIfLost();
@@ -635,12 +635,12 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
                 }
 
                 // Si la bala ha tocado suelo es letal para los invader
-                for (int i = 0; i < marcianitoLaser.length; i++) {
-                    if ((marcianitoLaser[i].isLetal()) && (marcianitoLaser[i].getStatus())) {
+                for (EnemyLaser aMarcianitoLaser : marcianitoLaser) {
+                    if ((aMarcianitoLaser.isLetal()) && (aMarcianitoLaser.getStatus())) {
                         for (int j = 0; j < numMarcianitos; j++) {
                             if (marcianito[j].getVisibility()) {
-                                puntuacion += checkIfKill(marcianitoLaser[i], marcianito[j], 100);
-                                puntuacion += checkIfKill(marcianitoLaser[i], marcianitoEsp, 0);
+                                puntuacion += checkIfKill(aMarcianitoLaser, marcianito[j], 100);
+                                puntuacion += checkIfKill(aMarcianitoLaser, marcianitoEsp, 0);
                                 gameOver();
 
                             }
@@ -666,9 +666,9 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
                 }
 
                 // Ha tocado la parte baja de la pantalla la bala del invader
-                for (int i = 0; i < marcianitoLaser.length; i++) {
-                    if (marcianitoLaser[i].getImpactPointY() > ejeY) {
-                        marcianitoLaser[i].setInactive();
+                for (EnemyLaser aMarcianitoLaser : marcianitoLaser) {
+                    if (aMarcianitoLaser.getImpactPointY() > ejeY) {
+                        aMarcianitoLaser.setInactive();
                     }
                 }
 
@@ -696,10 +696,10 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             }
 
             // Ha impactado una bala alienígena a un ladrillo de la guarida
-            for (int i = 0; i < marcianitoLaser.length; i++) {
-                if (marcianitoLaser[i].getStatus()) {
+            for (EnemyLaser aMarcianitoLaser2 : marcianitoLaser) {
+                if (aMarcianitoLaser2.getStatus()) {
                     for (int j = 0; j < numBloque; j++) {
-                        bloques[j] = this.laserImpactBlock(bloques[j], marcianitoLaser[i]);
+                        bloques[j] = this.laserImpactBlock(bloques[j], aMarcianitoLaser2);
                     }
                 }
 
@@ -720,24 +720,24 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             }
 
             // Dos o mas lasers impactan a la vez en la barrera
-            for (int j = 0; j < marcianitoLaser.length; j++) {
-                if ((espLaser.getStatus()) && (marcianitoLaser[j].getStatus())) {
+            for (EnemyLaser aMarcianitoLaser2 : marcianitoLaser) {
+                if ((espLaser.getStatus()) && (aMarcianitoLaser2.getStatus())) {
                     for (int k = 0; k < numBloque; k++) {
                         for (int v = 0; v < numBloque; v++) {
-                                Bloque[] twoBlocks = {bloques[k],bloques[v]};
-                                Laser[] twoLasers = {espLaser, marcianitoLaser[j]};
-                                laserSimultaneousImpactBlocks(twoBlocks, twoLasers);
+                            Bloque[] twoBlocks = {bloques[k], bloques[v]};
+                            Laser[] twoLasers = {espLaser, aMarcianitoLaser2};
+                            laserSimultaneousImpactBlocks(twoBlocks, twoLasers);
                         }
                     }
                 }
             }
 
-            for (int j = 0; j < marcianitoLaser.length; j++) {
-                if ((laser.getStatus()) && (marcianitoLaser[j].getStatus())) {
+            for (EnemyLaser aMarcianitoLaser1 : marcianitoLaser) {
+                if ((laser.getStatus()) && (aMarcianitoLaser1.getStatus())) {
                     for (int k = 0; k < numBloque; k++) {
                         for (int v = 0; v < numBloque; v++) {
-                            Bloque[] twoBlocks = {bloques[k],bloques[v]};
-                            Laser[] twoLasers = {laser, marcianitoLaser[j]};
+                            Bloque[] twoBlocks = {bloques[k], bloques[v]};
+                            Laser[] twoLasers = {laser, aMarcianitoLaser1};
                             laserSimultaneousImpactBlocks(twoBlocks, twoLasers);
                         }
                     }
@@ -755,8 +755,8 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             }
 
             // Ha impactado una bala de un invader a la nave espacial del jugador
-            for (int i = 0; i < marcianitoLaser.length; i++) {
-                playerHit(marcianitoLaser[i]);
+            for (EnemyLaser aMarcianitoLaser : marcianitoLaser) {
+                playerHit(aMarcianitoLaser);
             }
 
             // Ha impactado una bala del invader espontaneo a la nave espacial del jugador
@@ -810,22 +810,22 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
                 // Movimiento arriba
                 if ((motionEvent.getX() > upButton.getX())&&(motionEvent.getX() < upButton.getX()+ upButton.getLength())&&
                         (motionEvent.getY() > upButton.getY())&&(motionEvent.getY() < upButton.getY()+ upButton.getHeight())){
-                    nave.setMovementState(nave.UP);
+                    nave.setMovementState(Nave.UP);
                 }
                 // Movimiento abajo
                 if ((motionEvent.getX() > downButton.getX())&&(motionEvent.getX() < downButton.getX()+ downButton.getLength())&&
                         (motionEvent.getY() > downButton.getY())&&(motionEvent.getY() < downButton.getY()+ downButton.getHeight())){
-                    nave.setMovementState(nave.DOWN);
+                    nave.setMovementState(Nave.DOWN);
                 }
                 // Movimiento derecha
                 if ((motionEvent.getX() > rightButton.getX())&&(motionEvent.getX() < rightButton.getX()+ rightButton.getLength())&&
                         (motionEvent.getY() > rightButton.getY())&&(motionEvent.getY() < rightButton.getY()+ rightButton.getHeight())){
-                    nave.setMovementState(nave.RIGHT);
+                    nave.setMovementState(Nave.RIGHT);
                 }
                 // Movimiento izquierda
                 if ((motionEvent.getX() > leftButton.getX())&&(motionEvent.getX() < leftButton.getX()+ leftButton.getLength())&&
                         (motionEvent.getY() > leftButton.getY())&&(motionEvent.getY() < leftButton.getY()+ leftButton.getHeight())){
-                    nave.setMovementState(nave.LEFT);
+                    nave.setMovementState(Nave.LEFT);
                 }
 
                 break;
@@ -833,7 +833,7 @@ public class VistaSpaceInvaders extends SurfaceView implements Runnable {
             // El jugador ha retirado su dedo de la pantalla
             case MotionEvent.ACTION_UP:
                 if ((motionEvent.getX() < ejeX / 2)) {
-                    nave.setMovementState(nave.STOPPED);
+                    nave.setMovementState(Nave.STOPPED);
                 }
 
                 break;
