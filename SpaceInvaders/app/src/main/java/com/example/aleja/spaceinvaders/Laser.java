@@ -19,10 +19,13 @@ public class Laser {
     protected int height;
     protected boolean isActive;
 
+    private int reboundCount;
+
     public Laser(int screenY) {
 
         height = screenY / 20;
         isActive = false;
+        reboundCount = 0;
 
         rect = new RectF();
     }
@@ -70,8 +73,10 @@ public class Laser {
     public void changeDir(){
         if(this.heading == ABAJO){
             this.heading = ARRIBA;
+            this.reboundCount++;
         } else{
             this.heading = ABAJO;
+            this.reboundCount++;
         }
     }
 
@@ -83,6 +88,9 @@ public class Laser {
         }else{
             y = y + velocidad / fps;
         }
+
+        //Desactiva el disparo si ha rebotado mas de una vez
+        this.isActive = (this.reboundCount < 1);
 
         // Actualiza rect
         rect.left = x;
