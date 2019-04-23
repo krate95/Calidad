@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -22,6 +23,7 @@ public class MainActivity extends Activity {
         final EditText ageText = this.findViewById(R.id.age);
         final Button confirm = this.findViewById(R.id.confirm);
         final Switch switchReb = this.findViewById(R.id.switch1);
+        final Button ranking = this.findViewById(R.id.ranking);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -35,6 +37,22 @@ public class MainActivity extends Activity {
                 intent.putExtra(getResources().getString(R.string.name), name);
                 intent.putExtra("rebote", rebo);
                 startActivity(intent);
+            }
+        });
+
+        ranking.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String age = ageText.getText().toString();
+                String name = nameText.getText().toString();
+
+                if ((name.length() != 0)&&(age.length()==0)){
+                    Toast.makeText(MainActivity.this, "Por favor, introduzca la edad", Toast.LENGTH_LONG).show();
+                }else {
+                    Intent intent = new Intent(MainActivity.this, RankingActivity.class);
+                    intent.putExtra("adult",age);
+                    intent.putExtra(getResources().getString(R.string.name), name);
+                    startActivity(intent);
+                }
             }
         });
 
