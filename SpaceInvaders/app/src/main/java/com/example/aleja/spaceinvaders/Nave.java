@@ -38,6 +38,7 @@ public class Nave {
     public static final int UP = 3;
     public static final int DOWN = 4;
 
+
     // Se esta moviendo la nave espacial y en que dirección
     private int shipMoving = STOPPED;
 
@@ -121,6 +122,10 @@ public class Nave {
     
     public float getHeight() {
         return height;
+    }
+
+    public int getShipMoving() {
+        return shipMoving;
     }
 
     // Este método será usado para cambiar/establecer si la nave

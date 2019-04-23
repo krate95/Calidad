@@ -44,12 +44,17 @@ public class Marcianito {
     public static final int LEFT = 1;
     public static final int RIGHT = 2;
 
+
+
     // Se está moviendo la nave espacial y en qué dirección
     private int shipMoving = RIGHT;
 
     boolean isVisible;
 
     int padding;
+
+    private int screenX;
+    private int screenY;
 
     public Marcianito(Context context, int row, int column, int screenX, int screenY) {
 
@@ -88,6 +93,10 @@ public class Marcianito {
 
         // Qué tan rápido va el invader en pixeles por segundo
         shipSpeed = (float)((double)screenX/20);
+
+        //Inicializa screenX y screenY para saber cuando llegan a la mitad de la pantalla
+        this.screenX = screenX;
+        this.screenY = screenY;
     }
 
     public Marcianito(Context context, int screenX, int screenY) {
@@ -128,6 +137,14 @@ public class Marcianito {
 
         // Qué tan rápido va el invader en pixeles por segundo
         shipSpeed = (float)((double)screenX/11);
+
+        //Inicializa screenX y screenY para saber cuando llegan a la mitad de la pantalla
+        this.screenX = screenX;
+        this.screenY = screenY;
+    }
+
+    public float getShipSpeed() {
+        return shipSpeed;
     }
 
     public void setInvisible(){
@@ -204,9 +221,13 @@ public class Marcianito {
             shipMoving = LEFT;
         }
 
-        y = y + height;
-
-        shipSpeed = shipSpeed * 1.10f;
+        if(y < (screenY/2)){
+            y = y + height;
+            shipSpeed = shipSpeed * 1.10f;
+        } else {
+            y = y + (height*1.5f); //Bajar el doble si esta por debajo de la mitad de la pantalla
+            shipSpeed = (shipSpeed * 1.15f); //Moverse un 10% mas rapido si esta por debajo de la mitad de la pantalla
+        }
     }
 
     public boolean takeAim(float playerShipX, float playerShipLength){
